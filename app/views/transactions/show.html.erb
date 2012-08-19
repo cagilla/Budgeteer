@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @transaction.date %>
+</p>
+
+<p>
+  <b>Check:</b>
+  <%= @transaction.check %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @transaction.description %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @transaction.amount %>
+</p>
+
+<p>
+  <b>Note:</b>
+  <%= @transaction.note %>
+</p>
+
+<p>
+  <b>Is cleared:</b>
+  <%= @transaction.is_cleared %>
+</p>
+
+
+<%= link_to 'Edit', edit_account_transaction_path(@transaction.account, @transaction) %> |
+<%= link_to 'Back', account_transactions_path(@transaction.account) %>

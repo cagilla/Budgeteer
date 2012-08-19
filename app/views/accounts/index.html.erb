@@ -1,23 +1,26 @@
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<% provide(:title, 'Accounts') %>
+<div class="center hero-unit">
+  <table class="table table-striped table-bordered" >
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
 
-<% @accounts.each do |account| %>
-  <tr>
-    <td><%= best_in_place account, :name %></td>
-    <td><%= account.description %></td>
-    <td><%= link_to 'Show', account %></td>
-    <td><%= link_to 'Edit', edit_account_path(account) %></td>
-    <td><%= link_to 'Destroy', account, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+    <% @accounts.each do |account| %>
+      <tbody>
+        <tr>
+          <td><%= best_in_place account, :name %></td>
+          <td><%= best_in_place account, :description %></td>
+          <td align="center"><%= link_to 'Show', account %>
+              <%= link_to 'Edit', edit_account_path(account) %>
+              <%= link_to 'Destroy', account, confirm: 'Are you sure?', method: :delete %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+</div>
 <br />
 
 <%= link_to 'New Account', new_account_path %>

@@ -1,15 +1,10 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+	<p id="notice"><%= notice %></p>
+<% end %>
 
-<p>
-  <b>Name:</b>
-  <%= best_in_place @account, :name %>
-</p>
+<%= render @account %>
 
-<p>
-  <b>Description:</b>
-  <%= best_in_place @account, :description %>
-</p>
-
-
-<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'New Transaction', new_account_transaction_path(@account) %> 
+<%= link_to 'Edit', edit_account_path(@account) %> 
 <%= link_to 'Back', accounts_path %>
+
