@@ -3,8 +3,21 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    account = Account.find(params[:account_id])
-    @transactions = account.transactions
+    @account = Account.find(params[:account_id])
+    #get the starting balance for the page
+    if (params[:page].nil?)
+      page_num = 1;
+    else
+      page_num = Integer(params[:page])
+    end
+    if (Integer(page_num)>1)
+      prior_transactions=@account.transactions.paginate(:page => 1, :per_page => 15*(page_num-1), :order => "date DESC")
+      @page_balance = @account.final_balance - prior_transactions.to_a.sum {|transaction| transaction.amount}
+    else
+      @page_balance = @account.final_balance
+    end
+
+    @transactions = @account.transactions.paginate(:page => page_num, :per_page => 15, :order => "date DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -70,13 +83,27 @@ class TransactionsController < ApplicationController
     @transaction = account.transactions.find(params[:id])
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to [@transaction.account, @transaction], notice: 'Transaction was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def  clone
+    @transaction = Transaction.find(params[:id]).dup
+    respond_to do |format|
+      if @transaction.save
+        format.html { redirect_to [@transaction.account, @transaction], notice: 'Transaction was successfully cloned.' }
+        format.json { render json: @transaction, status: :created, location: [@transaction.account, @transaction] }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @transaction.errors, status: :unprocessable_entity }
+      end    
+    end
+     
   end
 
   # DELETE /transactions/1
@@ -87,7 +114,7 @@ class TransactionsController < ApplicationController
     @transaction.destroy
 
     respond_to do |format|
-      format.html { redirect_to transactions_url }
+      format.html { redirect_to account_transactions_url }
       format.json { head :no_content }
     end
   end

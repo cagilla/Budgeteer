@@ -13,8 +13,11 @@
         <tr>
           <td><%= best_in_place account, :name %></td>
           <td><%= best_in_place account, :description %></td>
-          <td align="center"><%= link_to 'Show', account %>
-              <%= link_to 'Edit', edit_account_path(account) %>
+          <td><%= number_to_currency(account.available_balance) %></td>
+          <td><%= number_to_currency(account.final_balance) %></td>
+
+          <td align="center"><%= link_to 'Show', account_transactions_path(account) %>
+              <%= link_to 'Edit', account, :action => :show %>
               <%= link_to 'Destroy', account, confirm: 'Are you sure?', method: :delete %></td>
         </tr>
       </tbody>

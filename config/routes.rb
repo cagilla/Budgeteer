@@ -1,6 +1,11 @@
 Budgeteer::Application.routes.draw do
   
-  resources :transactions
+  resources :transactions do
+    member do
+      get 'clone'
+    end
+  end
+
 
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'

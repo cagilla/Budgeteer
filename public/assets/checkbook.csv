@@ -1,0 +1,82 @@
+date;check;description;amount;category;note;account_id;is_cleared
+06/15/12;;Salary GM;2573.38;Income;;1;1
+06/18/12;;Hanover Insurance;-349.49;Insurance;;1;1
+06/18/12;;Oppenheimer;-200;Investment;;1;1
+06/20/12;3666;Emir;-40;House Cleaning;;1;1
+06/21/12;;Chase Mastercard;-185.03;Credit Card;;1;1
+06/21/12;;Cash;-320;Cash;;1;1
+06/25/12;;Ally;-223.45;Loans:Auto;Chevy Cruze;1;1
+06/28/12;;Cash;-300;Cash;;1;1
+06/29/12;;Chase Mortgage;-1068.09;Loans:Mortgage;Royal;1;1
+06/29/12;;GE Money;-78;Loans:Furniture;Art Van;1;1
+06/29/12;;Salary GM;2539.36;Income;;1;1
+06/29/12;;Transfer From DN;5595;;;1;1
+06/29/12;;Cash;-3000;;;1;1
+07/02/12;;DTE;-113.45;Utility;;1;1
+07/03/12;;Ally;-534.55;Loans:Auto;Outlook;1;1
+07/05/12;;Royal Oak Water Dept;-254.75;Utility;;1;1
+07/06/12;;PayPal;-24;Books;;1;1
+07/08/12;;American Express;-3385.25;;;1;1
+07/09/12;;Henry Ford Health System;-25;Medical;Grace;1;1
+07/09/12;;WOW;-75.01;Entertainment;;1;1
+07/13/12;;Sprint;-128.72;Utility;cell phone;1;1
+07/13/12;;Salary GM;2508.38;Income;;1;1
+07/13/12;;PayPal;-54.3;Computer;Adafruit;1;1
+07/16/12;;Consumers Energy;-23.29;Utility;Gas;1;1
+07/17/12;;Oppenheimer;-200;Investment;;1;1
+07/17/12;;Christ Covenant;-25;Education;Latchkey;1;1
+07/18/12;;Hanover Insurance;-349.49;Insurance;;1;1
+07/23/12;;Chase Visa;-120;Credit Card;;1;1
+07/23/12;;WOW;-110.8;Entertainment;;1;1
+07/23/12;;Pharmacy Advantage;-11.7;Medical;;1;1
+07/24/12;;Paypal;-20.99;Computer;;1;1
+07/25/12;;Ally;-223.45;Loans:Auto;Chevy Cruze;1;1
+07/26/12;;Transfer From DN;5600;;;1;1
+07/27/12;;City Of Royal Oak;-3163.2;Property Taxes;;1;1
+07/30/12;;Consumers Energy;-27.49;Utility;Gas;1;1
+07/31/12;;Chase Mortgage;-1068.09;Loans:Mortgage;Royal;1;1
+07/31/12;;Salary GM;2916.96;Income;;1;1
+08/01/12;;GE Money;-78;Loans:Furniture;Art Van;1;1
+08/01/12;;DTE;-176.52;Utility;Electric;1;1
+08/03/12;;Ally;-534.55;Loans:Auto;Outlook;1;1
+08/07/12;;Calvary Christian Ministries;-3580;Education;;1;1
+08/08/12;;American Express;-2046.2;Credit Card;;1;1
+08/10/12;;Transfer From DN;3200;;;1;1
+08/13/12;3667;Cash;-24;Cash;;1;1
+08/14/12;;Sprint;-128.39;Utility;cell phone;1;1
+08/15/12;;Salary GM;2508.38;Income;;1;1
+08/17/12;;Hanover Insurance;-349.49;Insurance;;1;1
+08/17/12;;ATM;-100;Cash;;1;1
+08/17/12;;Oppenheimer;-200;Investment;;1;1
+08/17/12;;PayPal;-6.25;Computer;;1;1
+08/22/12;;Chase Visa;-120;Credit Card;;1;1
+08/22/12;;Deposit;115;;;1;1
+08/22/12;;Cash;-1200;Cash;;1;1
+08/24/12;;Ally;-223.45;Loans:Auto;Chevy Cruze;1;1
+08/30/12;;DTE;-217.39;Utility;Electric;1;1
+08/30/12;3683;Emir Garcia;-65;House Cleaning;;1;1
+08/31/12;;Chase Mortgage;-1068.09;Loans:Mortgage;Royal;1;1
+08/31/12;;GE Money;-78;Loans:Furniture;Art Van;1;1
+08/31/12;;Salary GM;2539.36;Income;;1;1
+09/04/12;;Ally;-534.55;Loans:Auto;Outlook;1;1
+09/08/12;;American Express;-2015.17;Credit Card;;1;1
+09/09/12;;WOW;-105.81;Entertainment;;1;1
+05/25/12;;Salary;2919.6;;Fadwa;2;1
+05/29/12;1027;Victoria Judeh;-500;Gifts;;2;1
+05/31/12;;Interest;11.31;Interest Earned;;2;1
+06/06/12;;Transfer to Checking;-2500;Transfer To Checking;;2;1
+06/07/12;;Transfer to Checking;-1000;Transfer To Checking;;2;1
+06/08/12;;Salary;2919.61;;Fadwa;2;1
+06/20/12;1028;Calvary Christian Church;-1600;Tithe;;2;1
+06/22/12;;Salary;2919.6;;Fadwa;2;1
+06/29/12;;Transfer to Checking;-5600;Transfer To Checking;;2;1
+06/29/12;;Interest;9.06;Interest Earned;;2;1
+07/06/12;;Salary;2919.61;;Fadwa;2;1
+07/20/12;;Salary;2919.59;;Fadwa;2;1
+07/26/12;;Transfer to Checking;-5600;;;2;1
+07/31/12;;Interest;5.7;Interest Earned;;2;1
+08/03/12;;Salary;2919.61;;Fadwa;2;1
+08/10/12;;Transfer to Checking;-3200;;;2;1
+08/17/12;;Salary;2919.6;;Fadwa;2;1
+08/31/12;;Interest;5.52;Interest Earned;;2;1
+08/31/12;;Salary;2919.61;;Fadwa;2;1

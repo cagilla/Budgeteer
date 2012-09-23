@@ -8,6 +8,7 @@
       <td>Chk #</td>
       <td>Payee</td>
       <td>Amount</td>
+      <td>Category</td>
       <td>Note</td>
       <td>Balance</td>
     </tr>
@@ -23,9 +24,13 @@
     		<td><%= transaction.date %></td>
     		<td><%= transaction.check %></td>
     		<td><%= transaction.description %></td>
-    		<td><%= transaction.amount %></td>
-    		<td><%= transaction.note %></td>
-    		<td><%= balance %></td>
+    		<td><%= number_to_currency(transaction.amount) %></td>
+    		<td><%= transaction.category %></td>
+        <td><%= transaction.note %></td>
+    		<td><%= number_to_currency(balance) %></td>
+        <td align="center">
+              <%= link_to 'Edit', edit_account_transaction_path(transaction.account, transaction) %>
+              <%= link_to 'Destroy', [transaction.account, transaction], confirm: 'Are you sure?', method: :delete %></td>
     	</tr>
      <% end %>
  </tbody>  

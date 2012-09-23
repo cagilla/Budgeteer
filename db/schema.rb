@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120818031114) do
+ActiveRecord::Schema.define(:version => 20120922175054) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.decimal  "starting_balance"
   end
 
   create_table "transactions", :force => true do |t|
@@ -30,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20120818031114) do
     t.boolean  "is_cleared"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "category"
   end
 
 end

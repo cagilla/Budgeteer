@@ -1,35 +1,45 @@
-<h1>Listing transactions</h1>
+<h2><%= @account.name %></h2>
+<%= link_to 'New Transaction', new_account_transaction_path(@account) %> 
+<%= link_to 'Back', accounts_path %>
 
-<table>
-  <tr>
-    <th>Date</th>
-    <th>Check</th>
-    <th>Description</th>
-    <th>Amount</th>
-    <th>Note</th>
-    <th>Account</th>
-    <th>Is cleared</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= will_paginate %>
 
-<% @transactions.each do |transaction| %>
-  <tr>
-    <td><%= transaction.date %></td>
-    <td><%= transaction.check %></td>
-    <td><%= transaction.description %></td>
-    <td><%= transaction.amount %></td>
-    <td><%= transaction.note %></td>
-    <td><%= transaction.account_id %></td>
-    <td><%= transaction.is_cleared %></td>
-    <td><%= link_to 'Show', [transaction.account, transaction] %></td>
-    <td><%= link_to 'Edit', edit_account_transaction_path(transaction.account, transaction) %></td>
-    <td><%= link_to 'Destroy', [transaction.account, transaction], confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+<div class='transactions'>
+<table class="table table-striped table-bordered ">
+    <thead>
+      <tr>
+        <th>Is cleared</th>
+        <th>Date</th>
+        <th>Check</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Note</th>
+        <th>Balance</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <% balance = @page_balance %>
+        <% @transactions.each do |transaction| %>
+            
+            <tr>
+                <td><%= best_in_place transaction, :is_cleared, type: :checkbox, :path => [transaction.account, transaction] %></td>
+                <td><%= best_in_place transaction, :date, type: :date, :path => [transaction.account, transaction] %></td>
+                <td><%= best_in_place transaction, :check, :path => [transaction.account, transaction] %></td>
+                <td><%= best_in_place transaction, :description, :path => [transaction.account, transaction] %></td>
+                <td><%= best_in_place transaction, :amount, display_with: :number_to_currency, :path => [transaction.account, transaction] %></td>
+                <td><%= best_in_place transaction, :note, :path => [transaction.account, transaction] %></td>                
+                <td><%= number_to_currency(balance) %></td>
+                <td align="center"><%= link_to 'Show', [transaction.account, transaction] %>
+                <%= link_to 'Edit', edit_account_transaction_path(transaction.account, transaction) %>
+                <%= link_to "Copy", :action => "clone", :id => transaction.id %>
+                <%= link_to 'Destroy', [transaction.account, transaction], confirm: 'Are you sure?', method: :delete %></td>
+            </tr>
+            <% balance -= transaction.amount %>
+        <% end %>
+    </tbody>
 </table>
-
+<%= will_paginate %>
 <br />
 
-<%= link_to 'New Transaction', new_transaction_path %>
+
