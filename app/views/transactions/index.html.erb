@@ -13,6 +13,7 @@
         <th>Check</th>
         <th>Description</th>
         <th>Amount</th>
+        <th>Category</th>
         <th>Note</th>
         <th>Balance</th>
         <th></th>
@@ -28,6 +29,7 @@
                 <td><%= best_in_place transaction, :check, :path => [transaction.account, transaction] %></td>
                 <td><%= best_in_place transaction, :description, :path => [transaction.account, transaction] %></td>
                 <td><%= best_in_place transaction, :amount, display_with: :number_to_currency, :path => [transaction.account, transaction] %></td>
+                <td><%= best_in_place transaction, :category, :path => [transaction.account, transaction] %></td>
                 <td><%= best_in_place transaction, :note, :path => [transaction.account, transaction] %></td>                
                 <td><%= number_to_currency(balance) %></td>
                 <td align="center"><%= link_to 'Show', [transaction.account, transaction] %>

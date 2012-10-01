@@ -7,13 +7,11 @@ class Account < ActiveRecord::Base
   has_many :transactions, dependent: :destroy
   
   def final_balance
-  	sum = transactions.to_a.sum { |transaction| transaction.amount }
-    sum + starting_balance
+  	starting_balance + transactions.to_a.sum { |transaction| transaction.amount }
   end
  	
   def available_balance
-    transactions.to_a.sum { |transaction| transaction.date <= Date.today ? transaction.amount : 0 }
-    sum + starting_balance
+    starting_balance + transactions.to_a.sum { |transaction| transaction.date <= Date.today ? transaction.amount : 0 }
   end
 
 end
