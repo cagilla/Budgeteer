@@ -1,5 +1,6 @@
-
 class TransactionsController < ApplicationController
+  before_filter :signed_in_user
+ 
   # GET /transactions
   # GET /transactions.json
   def index

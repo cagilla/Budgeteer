@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  before_filter :signed_in_user
+ 
   # GET /accounts
   # GET /accounts.json
   def index
