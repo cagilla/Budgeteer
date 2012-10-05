@@ -10,7 +10,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'pg', '0.12.2'
 
-
+gem 'annotate', '2.5.0', group: :development
 
 
 # Gems used only for assets and not required
@@ -23,6 +23,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-ui-rails'
 end
 
 gem 'jquery-rails', '2.0.2'
