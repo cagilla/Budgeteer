@@ -8,6 +8,10 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  starting_balance :decimal(, )
+#  web_address      :string(255)
+#  user_name        :string(255)
+#  password         :string(255)
+#  note             :text
 #
 
 class Account < ActiveRecord::Base
@@ -15,7 +19,8 @@ class Account < ActiveRecord::Base
   #has_secure_password
   validates :name, presence: true, uniqueness: true
   
-  attr_accessible :description, :name, :starting_balance
+  attr_accessible :description, :name, :starting_balance, :web_address, :user_name, :password, :note
+  
   has_many :transactions, dependent: :destroy
   
   def final_balance

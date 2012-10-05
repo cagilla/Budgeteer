@@ -11,9 +11,23 @@
 	<b>Starting Balance: </b>
 	<%= best_in_place @account, :starting_balance %>
 </p>
-
+<p>
+	<b>Website URL: </b>
+	<%= best_in_place @account, :web_address %>
+</p>
+<p>
+	<b>User Name: </b>
+	<%= best_in_place @account, :user_name %>
+</p>
+<p>
+	<b>Password: </b>
+	<%= best_in_place @account, :password %>
+</p>
+<p>
+	<b>Notes: </b>
+	<%= best_in_place @account, :note, type: :textarea %>
+</p>
 
 <%= link_to 'New Transaction', new_account_transaction_path(@account) %> 
 <%= link_to 'Edit', edit_account_path(@account) %> 
 <%= link_to 'Back', accounts_path %>
-

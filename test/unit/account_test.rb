@@ -8,6 +8,10 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  starting_balance :decimal(, )
+#  web_address      :string(255)
+#  user_name        :string(255)
+#  password         :string(255)
+#  note             :text
 #
 
 require 'test_helper'
