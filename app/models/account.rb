@@ -16,9 +16,11 @@
 
 class Account < ActiveRecord::Base
   require 'date'
-  #has_secure_password
+  
   validates :name, presence: true, uniqueness: true
   
+  scope :without_account, lambda{|account| account ? {:conditions => ["id != ?", account.id]} : {} }
+
   attr_accessible :description, :name, :starting_balance, :web_address, :user_name, :password, :note
   
   has_many :transactions, dependent: :destroy
@@ -30,5 +32,7 @@ class Account < ActiveRecord::Base
   def available_balance
     starting_balance + transactions.to_a.sum { |transaction| transaction.date <= Date.today ? transaction.amount : 0 }
   end
+
+
 
 end

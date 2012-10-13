@@ -11,7 +11,7 @@ class TransactionsController < ApplicationController
     else
       page_num = Integer(params[:page])
     end
-    if (Integer(page_num)>1)
+    if (page_num>1)
       prior_transactions=@account.transactions.paginate(:page => 1, :per_page => 15*(page_num-1), :order => "date DESC")
       @page_balance = @account.final_balance - prior_transactions.to_a.sum {|transaction| transaction.amount}
     else
@@ -53,6 +53,19 @@ class TransactionsController < ApplicationController
       format.json { render json: @transaction }
     end
   end
+  
+  def new_transfer
+    account = Account.find(params[:account_id])
+    @transaction = account.transactions.build
+    @transaction.description = "Transfer"
+    @transaction.toggle(:isTransfer)
+    @transaction.amount = 100
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @transaction }
+    end
+  end
 
   # GET /transactions/1/edit
   def edit
@@ -63,9 +76,16 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
-    account = Account.find(params[:account_id])
-    @transaction = account.transactions.create(params[:transaction])
 
+    print "Account ID:"+params[:account_id]
+    account = Account.find(params[:account_id])
+    print "Acc name" + account.name
+    @transaction = account.transactions.create(params[:transaction])
+    if (@transaction.amount > 0)
+      @transaction.category = "Txfr from " + @transaction.transferAccount.name
+    else
+      @transaction.category = "Txfr to " + @transaction.transferAccount.name
+    end
     respond_to do |format|
       if @transaction.save
         format.html { redirect_to [@transaction.account, @transaction], notice: 'Transaction was successfully created.' }

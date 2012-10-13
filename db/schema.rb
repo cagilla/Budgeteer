@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121005041819) do
+ActiveRecord::Schema.define(:version => 20121005132557) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -33,9 +33,11 @@ ActiveRecord::Schema.define(:version => 20121005041819) do
     t.text     "note"
     t.integer  "account_id"
     t.boolean  "is_cleared"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "category"
+    t.boolean  "isTransfer",         :default => false
+    t.integer  "transferAccount_id"
   end
 
   create_table "users", :force => true do |t|
