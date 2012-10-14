@@ -32,10 +32,11 @@
                 <td><%= best_in_place transaction, :category, :path => [transaction.account, transaction] %></td>
                 <td><%= best_in_place transaction, :note, :path => [transaction.account, transaction] %></td>                
                 <td><%= number_to_currency(balance) %></td>
-                <td align="center"><%= link_to 'Show', [transaction.account, transaction] %>
-                <%= link_to 'Edit', edit_account_transaction_path(transaction.account, transaction) %>
-                <%= link_to "Copy", :action => "clone", :id => transaction.id %>
-                <%= link_to 'Destroy', [transaction.account, transaction], confirm: 'Are you sure?', method: :delete %></td>
+                <td align="center">
+                  <%= link_to raw("<i class=\"icon-pencil \"> </i>"), [transaction.account, transaction] %>
+                  <%= link_to raw("<i class=\"icon-plus-sign \"> </i>"), :action => "clone", :id => transaction.id %>
+                  <%= link_to raw("<i class=\"icon-trash \"> </i>"), [transaction.account, transaction], confirm: 'Are you sure?', method: :delete %>
+                </td>
             </tr>
             <% balance -= transaction.amount %>
         <% end %>

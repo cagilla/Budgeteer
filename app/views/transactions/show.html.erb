@@ -2,34 +2,38 @@
 
 <p>
   <b>Date:</b>
-  <%= @transaction.date %>
+  <%= best_in_place @transaction, :date, type: :date, :path => [@transaction.account, @transaction] %>
 </p>
 
 <p>
   <b>Check:</b>
-  <%= @transaction.check %>
+  <%= best_in_place @transaction, :check, :path => [@transaction.account, @transaction] %>
 </p>
 
 <p>
   <b>Description:</b>
-  <%= @transaction.description %>
+  <%= best_in_place @transaction, :description, :path => [@transaction.account, @transaction] %>
 </p>
 
 <p>
   <b>Amount:</b>
-  <%= @transaction.amount %>
+  <%= best_in_place @transaction, :amount, display_with: :number_to_currency, :path => [@transaction.account, @transaction] %>
 </p>
 
 <p>
+  <b>Category:</b>
+  <%= best_in_place @transaction, :category, :path => [@transaction.account, @transaction] %>
+  </p>
+
+<p>
   <b>Note:</b>
-  <%= @transaction.note %>
+  <%= best_in_place @transaction, :note, :path => [@transaction.account, @transaction] %>                
 </p>
 
 <p>
   <b>Is cleared:</b>
-  <%= @transaction.is_cleared %>
+  <%= best_in_place @transaction, :is_cleared, type: :checkbox, :path => [@transaction.account, @transaction] %>
 </p>
 
 
-<%= link_to 'Edit', edit_account_transaction_path(@transaction.account, @transaction) %> |
 <%= link_to 'Back', account_transactions_path(@transaction.account) %>

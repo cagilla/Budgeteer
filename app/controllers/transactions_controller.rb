@@ -95,9 +95,11 @@ class TransactionsController < ApplicationController
 
   def  clone
     @transaction = Transaction.find(params[:id]).dup
+    @transaction.date = Date.today
+    @transaction.is_cleared = false
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to [@transaction.account, @transaction], notice: 'Transaction was successfully cloned.' }
+        format.html { redirect_to account_transactions_path(@transaction.account), notice: 'Transaction was successfully cloned.' }
         format.json { render json: @transaction, status: :created, location: [@transaction.account, @transaction] }
       else
         format.html { render action: "new" }
