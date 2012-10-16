@@ -18,7 +18,7 @@ class TransactionsController < ApplicationController
       @page_balance = @account.final_balance
     end
 
-    @transactions = @account.transactions.paginate(:page => page_num, :per_page => 15, :order => "date DESC")
+    @transactions = Transaction.transactions_for_account(params[:account_id]).paginate(:page => page_num, :per_page => 15, :order => "date DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -58,7 +58,7 @@ class TransactionsController < ApplicationController
     account = Account.find(params[:account_id])
     @transaction = account.transactions.build
     @transaction.description = "Transfer"
-    @transaction.toggle(:isTransfer)
+    @transaction.isTransfer = true
     @transaction.amount = 100
 
     respond_to do |format|
@@ -81,10 +81,12 @@ class TransactionsController < ApplicationController
     account = Account.find(params[:account_id])
     print "Acc name" + account.name
     @transaction = account.transactions.create(params[:transaction])
-    if (@transaction.amount > 0)
-      @transaction.category = "Txfr from " + @transaction.transferAccount.name
-    else
-      @transaction.category = "Txfr to " + @transaction.transferAccount.name
+    if (@transaction.isTransfer)
+      if (@transaction.amount > 0)
+        @transaction.category = "Txfr from " + @transaction.transferAccount.name
+      else
+        @transaction.category = "Txfr to " + @transaction.transferAccount.name
+      end
     end
     respond_to do |format|
       if @transaction.save

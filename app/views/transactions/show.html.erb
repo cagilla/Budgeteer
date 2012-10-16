@@ -35,5 +35,12 @@
   <%= best_in_place @transaction, :is_cleared, type: :checkbox, :path => [@transaction.account, @transaction] %>
 </p>
 
+  <%if Rails.env.development? %>
+    <p>
+      <b>Is Transfer:</b>
+      <%= best_in_place @transaction, :isTransfer, type: :checkbox, :path => [@transaction.account, @transaction] %>
+    </p>
+  <% end %>
+
 
 <%= link_to 'Back', account_transactions_path(@transaction.account) %>

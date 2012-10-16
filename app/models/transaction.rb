@@ -24,4 +24,7 @@ class Transaction < ActiveRecord::Base
   belongs_to :account, class_name: 'Account'
   belongs_to :transferAccount, class_name: 'Account'
   
+  def self.transactions_for_account(acct)
+  	where "account_id = ? OR \"transferAccount_id\" = ?", acct, acct
+  end
 end

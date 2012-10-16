@@ -35,6 +35,12 @@
     <%= f.label :is_cleared %><br />
     <%= f.check_box :is_cleared %>
   </div>
+  
+  <div class="field">
+    <%= f.label :transferAccount_id %>
+    <%= f.collection_select(:transferAccount_id, Account.without_account(@transaction.account), :id, :name) %>
+  </div>
+  <%= f.hidden_field(:isTransfer) %>
   <div class="actions">
     <%= f.submit %>
   </div>
