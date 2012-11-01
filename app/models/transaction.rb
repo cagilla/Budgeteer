@@ -27,4 +27,29 @@ class Transaction < ActiveRecord::Base
   def self.transactions_for_account(acct)
   	where "account_id = ? OR \"transferAccount_id\" = ?", acct, acct
   end
+
+  def category(acct=nil)
+  	if (!acct.nil? && self.isTransfer == true)
+      puts "The acct is: ?", acct
+      my_id = self[:account_id]
+  		if (my_id == acct)
+        id = my_id
+      else
+        id = self[:transferAccount_id]
+      end
+  	else
+  		read_attribute(:category)
+  	end
+  end
+  def amount(acct=nil)
+  	if (!acct.nil? && self.isTransfer == true)
+  		if (:account_id == acct)
+        read_attribute(:amount)
+      else
+        - read_attribute(:amount)
+      end
+  	else
+      read_attribute(:amount)
+  	end
+  end
 end

@@ -41,6 +41,9 @@
       <%= best_in_place @transaction, :isTransfer, type: :checkbox, :path => [@transaction.account, @transaction] %>
     </p>
   <% end %>
-
+<p>
+  <b>Transfer Account:</b>
+  <%= best_in_place @transaction, :transferAccount_id, :path => [@transaction.account, @transaction] %>                
+</p>
 
 <%= link_to 'Back', account_transactions_path(@transaction.account) %>
