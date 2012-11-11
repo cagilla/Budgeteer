@@ -1,4 +1,6 @@
 Budgeteer::Application.routes.draw do
+  resources :categories
+
   resources :users
   resources :transactions do
     member do

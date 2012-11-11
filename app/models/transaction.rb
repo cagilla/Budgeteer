@@ -21,5 +21,5 @@ class Transaction < ActiveRecord::Base
   validates_presence_of :amount, :date
   
   belongs_to :account
-  
+  belongs_to :category
 end
