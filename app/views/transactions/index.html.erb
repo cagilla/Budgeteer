@@ -1,5 +1,6 @@
 <h2><%= @account.name %></h2>
 <%= link_to 'New Transaction', new_account_transaction_path(@account) %> 
+<%= link_away 'New Category', new_category_path %>
 <%= link_to 'Back', accounts_path %>
 
 <%= will_paginate %>
@@ -29,7 +30,7 @@
                 <td><%= best_in_place transaction, :check, :path => [transaction.account, transaction] %></td>
                 <td><%= best_in_place transaction, :description, :path => [transaction.account, transaction] %></td>
                 <td><%= best_in_place transaction, :amount, display_with: :number_to_currency, :path => [transaction.account, transaction] %></td>
-                <td><%= transaction.category.name %></td>
+                <td><%= best_in_place transaction, :category_id, :type => :select, :collection => Category::list_category_options, :path => [transaction.account, transaction] %></td>
                 <td><%= best_in_place transaction, :note, :path => [transaction.account, transaction] %></td>                
                 <td><%= number_to_currency(balance) %></td>
                 <td align="center">
