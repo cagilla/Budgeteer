@@ -31,4 +31,16 @@ class Account < ActiveRecord::Base
     starting_balance + transactions.to_a.sum { |transaction| transaction.date <= Date.today ? transaction.amount : 0 }
   end
 
+  def reconciled_balance
+    starting_balance + transactions.to_a.sum { |transaction| transaction.is_cleared? ? transaction.amount : 0 }
+  end
+
+  def self.reconciled_total
+    accts = Account.all
+    accts.to_a.sum { |m| m.reconciled_balance }
+  end
+  def self.final_total
+    accts = Account.all
+    accts.to_a.sum { |m| m.final_balance }
+  end
 end

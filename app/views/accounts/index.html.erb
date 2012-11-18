@@ -5,23 +5,35 @@
       <tr>
         <th>Name</th>
         <th>Description</th>
+        <th>Reconciled Balance</th>
+        <th>Final Balance</th>
+        <th></th>
       </tr>
     </thead>
 
-    <% @accounts.each do |account| %>
-      <tbody>
+    
+    <tbody>
+      <% @accounts.each do |account| %>
         <tr>
           <td><%= best_in_place account, :name %></td>
           <td><%= best_in_place account, :description %></td>
-          <td><%= number_to_currency(account.available_balance) %></td>
+          <td><%= number_to_currency(account.reconciled_balance) %></td>
           <td><%= number_to_currency(account.final_balance) %></td>
 
-          <td align="center"><%= link_to 'Show', account_transactions_path(account) %>
-              <%= link_to 'Edit', account, :action => :show %>
-              <%= link_to 'Destroy', account, confirm: 'Are you sure?', method: :delete %></td>
+          <td align="center">
+              <%= link_to raw("<i class=\"icon-play \"> </i>"), account_transactions_path(account) %>
+              <%= link_to raw("<i class=\"icon-pencil \"> </i>"), account, :action => :show %>
+              <%= link_to raw("<i class=\"icon-trash \"> </i>"), account, confirm: 'Are you sure?', method: :delete %>
+          </td>
         </tr>
-      </tbody>
-    <% end %>
+      <% end %>
+      <tr>
+        <td></td>
+        <td align="right"><b>Total:</b></td>
+        <td><%= number_to_currency(Account.reconciled_total) %></td>
+        <td><%= number_to_currency(Account.final_total) %></td>
+      </tr>
+    </tbody>
   </table>
 </div>
 <br />
