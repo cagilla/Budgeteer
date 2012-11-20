@@ -35,6 +35,11 @@ class Account < ActiveRecord::Base
     starting_balance + transactions.to_a.sum { |transaction| transaction.is_cleared? ? transaction.amount : 0 }
   end
 
+  # list of unreconciled transactions
+  def unreconciled
+    transactions.where("not is_cleared")
+  end
+  
   def self.reconciled_total
     accts = Account.all
     accts.to_a.sum { |m| m.reconciled_balance }

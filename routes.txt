@@ -1,0 +1,47 @@
+              categories GET    /categories(.:format)                                 categories#index
+                         POST   /categories(.:format)                                 categories#create
+            new_category GET    /categories/new(.:format)                             categories#new
+           edit_category GET    /categories/:id/edit(.:format)                        categories#edit
+                category GET    /categories/:id(.:format)                             categories#show
+                         PUT    /categories/:id(.:format)                             categories#update
+                         DELETE /categories/:id(.:format)                             categories#destroy
+                   users GET    /users(.:format)                                      users#index
+                         POST   /users(.:format)                                      users#create
+                new_user GET    /users/new(.:format)                                  users#new
+               edit_user GET    /users/:id/edit(.:format)                             users#edit
+                    user GET    /users/:id(.:format)                                  users#show
+                         PUT    /users/:id(.:format)                                  users#update
+                         DELETE /users/:id(.:format)                                  users#destroy
+       clone_transaction GET    /transactions/:id/clone(.:format)                     transactions#clone
+            transactions GET    /transactions(.:format)                               transactions#index
+                         POST   /transactions(.:format)                               transactions#create
+         new_transaction GET    /transactions/new(.:format)                           transactions#new
+        edit_transaction GET    /transactions/:id/edit(.:format)                      transactions#edit
+             transaction GET    /transactions/:id(.:format)                           transactions#show
+                         PUT    /transactions/:id(.:format)                           transactions#update
+                         DELETE /transactions/:id(.:format)                           transactions#destroy
+                sessions POST   /sessions(.:format)                                   sessions#create
+             new_session GET    /sessions/new(.:format)                               sessions#new
+                 session DELETE /sessions/:id(.:format)                               sessions#destroy
+                  signup        /signup(.:format)                                     users#new
+                  signin        /signin(.:format)                                     sessions#new
+                 signout DELETE /signout(.:format)                                    sessions#destroy
+                    help        /help(.:format)                                       static_pages#help
+                   about        /about(.:format)                                      static_pages#about
+                 contact        /contact(.:format)                                    static_pages#contact
+    account_transactions GET    /accounts/:account_id/transactions(.:format)          transactions#index
+                         POST   /accounts/:account_id/transactions(.:format)          transactions#create
+ new_account_transaction GET    /accounts/:account_id/transactions/new(.:format)      transactions#new
+edit_account_transaction GET    /accounts/:account_id/transactions/:id/edit(.:format) transactions#edit
+     account_transaction GET    /accounts/:account_id/transactions/:id(.:format)      transactions#show
+                         PUT    /accounts/:account_id/transactions/:id(.:format)      transactions#update
+                         DELETE /accounts/:account_id/transactions/:id(.:format)      transactions#destroy
+                accounts GET    /accounts(.:format)                                   accounts#index
+                         POST   /accounts(.:format)                                   accounts#create
+             new_account GET    /accounts/new(.:format)                               accounts#new
+            edit_account GET    /accounts/:id/edit(.:format)                          accounts#edit
+                 account GET    /accounts/:id(.:format)                               accounts#show
+                         PUT    /accounts/:id(.:format)                               accounts#update
+                         DELETE /accounts/:id(.:format)                               accounts#destroy
+                                /accounts/:id/transactions/reconcile(.:format)        transactions#reconcile
+                    root        /                                                     static_pages#home

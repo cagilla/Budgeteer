@@ -7,7 +7,7 @@ Budgeteer::Application.routes.draw do
       get 'clone'
     end
   end
-
+  
   resources :sessions, only: [:new, :create, :destroy]
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
@@ -20,7 +20,7 @@ Budgeteer::Application.routes.draw do
   resources :accounts do
     resources :transactions
   end
-
+  match 'accounts/:id/reconcile' => 'transactions#reconcile'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

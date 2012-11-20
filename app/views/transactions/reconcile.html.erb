@@ -1,14 +1,11 @@
-<h2><%= @account.name %></h2>
+<h2>Reconciling: <%= @account.name %></h2>
 <%= link_to '[New Transaction]', new_account_transaction_path(@account) %> 
 <%= link_away '[New Category]', new_category_path %>
-<%= link_to '[Reconcile Account]', controller: "transactions", action: "reconcile", id: @account.id %> 
-<%= link_to '[Back]', accounts_path %>
+<%= link_to '[Done]', account_transactions_path(@account) %>
 
 <p>
 <%= number_to_currency(@account.reconciled_balance) %>
 </p>
-
-<%= will_paginate %>
 
 <div class='transactions'>
 <table class="table table-striped table-bordered ">
@@ -21,12 +18,10 @@
         <th>Amount</th>
         <th>Category</th>
         <th>Note</th>
-        <th>Balance</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-        <% balance = @page_balance %>
         <% @transactions.each do |transaction| %>
             
             <tr>
@@ -37,18 +32,16 @@
                 <td><%= best_in_place transaction, :amount, display_with: :number_to_currency, :path => [transaction.account, transaction] %></td>
                 <td><%= best_in_place transaction, :category_id, :type => :select, :collection => Category::list_category_options, :path => [transaction.account, transaction] %></td>
                 <td><%= best_in_place transaction, :note, :path => [transaction.account, transaction] %></td>                
-                <td><%= number_to_currency(balance) %></td>
                 <td align="center">
                   <%= link_to raw("<i class=\"icon-pencil \"> </i>"), [transaction.account, transaction] %>
                   <%= link_to raw("<i class=\"icon-plus-sign \"> </i>"), :action => "clone", :id => transaction.id %>
                   <%= link_to raw("<i class=\"icon-trash \"> </i>"), [transaction.account, transaction], confirm: 'Are you sure?', method: :delete %>
                 </td>
             </tr>
-            <% balance -= transaction.amount %>
+            
         <% end %>
     </tbody>
 </table>
-<%= will_paginate %>
-
+<br />
 
 
