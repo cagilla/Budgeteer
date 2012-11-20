@@ -26,6 +26,28 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def reconcile
+    @account = Account.find(params[:id])
+    ##get the starting balance for the page
+    # if (params[:page].nil?)
+    #   page_num = 1;
+    # else
+    #   page_num = Integer(params[:page])
+    # end
+    # if (Integer(page_num)>1)
+    #   prior_transactions=@account.transactions.paginate(:page => 1, :per_page => 15*(page_num-1), :order => "date DESC")
+    #   @page_balance = @account.final_balance - prior_transactions.to_a.sum {|transaction| transaction.amount}
+    # else
+    #   @page_balance = @account.final_balance
+    # end
+    @transactions = @account.unreconciled
+
+    respond_to do |format|
+      format.html #{ render index.html.erb }
+      format.json { render json: @transactions }
+    end
+  end
+
   # GET /transactions/1
   # GET /transactions/1.json
   def show
