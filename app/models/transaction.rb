@@ -22,4 +22,14 @@ class Transaction < ActiveRecord::Base
   
   belongs_to :account
   belongs_to :category
+
+  def self.search(search)
+	  if search and search != ""
+	    where('UPPER(description) LIKE ?', search.upcase)
+	  else
+	    scoped
+	  end
+  end
+
+
 end
