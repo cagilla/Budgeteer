@@ -18,7 +18,7 @@ class TransactionsController < ApplicationController
       @page_balance = @account.final_balance
     end
 
-    @transactions = @account.transactions.paginate(:page => page_num, :per_page => 15, :order => "date DESC")
+    @transactions = @account.transactions.search(params[:search]).paginate(:page => page_num, :per_page => 15, :order => "date DESC")
 
     respond_to do |format|
       format.html # index.html.erb

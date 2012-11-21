@@ -5,8 +5,15 @@
 <%= link_to '[Back]', accounts_path %>
 
 <p>
-<%= number_to_currency(@account.reconciled_balance) %>
+<b>Reconciled Balance:</b><%= number_to_currency(@account.reconciled_balance) %>
 </p>
+
+<%= form_tag account_transactions_path(@account), :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
 
 <%= will_paginate %>
 
