@@ -90,7 +90,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to [@transaction.account, @transaction], notice: 'Transaction was successfully created.' }
+        format.html { redirect_to account_transactions_path(account), notice: 'Transaction was successfully created.' }
         format.json { render json: @transaction, status: :created, location: [@transaction.account, @transaction] }
       else
         format.html { render action: "new" }

@@ -22,7 +22,7 @@
 
 <p>
   <b>Category:</b>
-  <%= transaction.category.name %>
+  <%= best_in_place @transaction, :category_id, :type => :select, :collection => Category::list_category_options, :path => [@transaction.account, @transaction] %>
   </p>
 
 <p>
