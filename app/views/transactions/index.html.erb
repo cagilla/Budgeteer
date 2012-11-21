@@ -5,9 +5,9 @@
 <%= link_to '[Back]', accounts_path %>
 
 <p>
-<b>Reconciled Balance:</b><%= number_to_currency(@account.reconciled_balance) %>
+<b>Available Balance:</b><%= number_to_currency(@account.reconciled_balance) %>
 </p>
-
+<p><b>Balance:</b><%= number_to_currency(@account.final_balance) %></p>
 <%= form_tag account_transactions_path(@account), :method => 'get' do %>
   <p>
     <%= text_field_tag :search, params[:search] %>
@@ -27,13 +27,11 @@
         <th>Description</th>
         <th>Amount</th>
         <th>Category</th>
-        <th>Note</th>
-        <th>Balance</th>
+        <th>Note</th>        
         <th></th>
       </tr>
     </thead>
     <tbody>
-        <% balance = @page_balance %>
         <% @transactions.each do |transaction| %>
             
             <tr>
@@ -43,15 +41,13 @@
                 <td><%= best_in_place transaction, :description, :path => [transaction.account, transaction] %></td>
                 <td><%= best_in_place transaction, :amount, display_with: :number_to_currency, :path => [transaction.account, transaction] %></td>
                 <td><%= best_in_place transaction, :category_id, :type => :select, :collection => Category::list_category_options, :path => [transaction.account, transaction] %></td>
-                <td><%= best_in_place transaction, :note, :path => [transaction.account, transaction] %></td>                
-                <td><%= number_to_currency(balance) %></td>
+                <td><%= best_in_place transaction, :note, :path => [transaction.account, transaction] %></td>           
                 <td align="center">
                   <%= link_to raw("<i class=\"icon-pencil \"> </i>"), [transaction.account, transaction] %>
                   <%= link_to raw("<i class=\"icon-plus-sign \"> </i>"), :action => "clone", :id => transaction.id %>
                   <%= link_to raw("<i class=\"icon-trash \"> </i>"), [transaction.account, transaction], confirm: 'Are you sure?', method: :delete %>
                 </td>
             </tr>
-            <% balance -= transaction.amount %>
         <% end %>
     </tbody>
 </table>
