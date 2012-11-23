@@ -2,6 +2,7 @@
 <%= link_to '[New Transaction]', new_account_transaction_path(@account) %> 
 <%= link_away '[New Category]', new_category_path %>
 <%= link_to '[Reconcile Account]', controller: "transactions", action: "reconcile", id: @account.id %> 
+<%= link_to 'New Transfer', new_transfer_account_transaction_path(@account,@account.transactions.first) %>
 <%= link_to '[Back]', accounts_path %>
 
 <p>

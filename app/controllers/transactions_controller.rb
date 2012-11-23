@@ -69,6 +69,19 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def new_transfer
+    account = Account.find(params[:account_id])
+    @transaction = account.transactions.build
+    @transaction.description = "Transfer"
+    @transaction.toggle(:isTransfer)
+    @transaction.amount = 100
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @transaction }
+    end
+  end
+
   # GET /transactions/1/edit
   def edit
     account = Account.find(params[:account_id])

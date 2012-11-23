@@ -18,7 +18,11 @@ Budgeteer::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
 
   resources :accounts do
-    resources :transactions
+    resources :transactions do 
+       member do 
+         get 'new_transfer'
+       end
+     end
   end
   match 'accounts/:id/reconcile' => 'transactions#reconcile'
   # The priority is based upon order of creation:

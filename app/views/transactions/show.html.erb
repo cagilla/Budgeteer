@@ -23,7 +23,7 @@
 <p>
   <b>Category:</b>
   <%= best_in_place @transaction, :category_id, :type => :select, :collection => Category::list_category_options, :path => [@transaction.account, @transaction] %>
-  </p>
+</p>
 
 <p>
   <b>Note:</b>
@@ -34,6 +34,14 @@
   <b>Is cleared:</b>
   <%= best_in_place @transaction, :is_cleared, type: :checkbox, :path => [@transaction.account, @transaction] %>
 </p>
+<p>
+  <b>Is a Transfer:</b>
+  <%= best_in_place @transaction, :is_transfer, type: :checkbox, :path => [@transaction.account, @transaction] %>
+</p>
 
+<p>
+  <b>Transfer Account:</b>
+  <%= best_in_place @transaction, :transfer_account_id, :type => :select, :collection => Account::list_account_options_without(@transaction.account), :path => [@transaction.account, @transaction] %>
+</p>
 
 <%= link_to 'Back', account_transactions_path(@transaction.account) %>

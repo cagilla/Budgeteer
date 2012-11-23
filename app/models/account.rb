@@ -23,6 +23,8 @@ class Account < ActiveRecord::Base
   
   has_many :transactions, dependent: :destroy
   
+  scope :without_account, lambda{|account| account ? {:conditions => ["id != ?", account.id]} : {} }
+  
   def final_balance
   	starting_balance + transactions.to_a.sum { |transaction| transaction.amount }
   end
@@ -47,5 +49,9 @@ class Account < ActiveRecord::Base
   def self.final_total
     accts = Account.all
     accts.to_a.sum { |m| m.final_balance }
+  end
+
+  def self.list_account_options_without(acct)
+    without_account(acct).select("id, name").map { |x| [x.id, x.name] }
   end
 end
