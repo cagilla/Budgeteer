@@ -34,13 +34,14 @@
     </thead>
     <tbody>
         <% @transactions.each do |transaction| %>
-            
+            <% transaction.current_acct_id = @account.id %>
             <tr>
                 <td><%= best_in_place transaction, :is_cleared, type: :checkbox, :path => [transaction.account, transaction] %></td>
                 <td><%= best_in_place transaction, :date, type: :date, :path => [transaction.account, transaction] %></td>
                 <td><%= best_in_place transaction, :check, :path => [transaction.account, transaction] %></td>
                 <td><%= best_in_place transaction, :description, :path => [transaction.account, transaction] %></td>
-                <td><%= best_in_place transaction, :amount, display_with: :number_to_currency, :path => [transaction.account, transaction] %></td>
+                <td><%#= transaction.amount(@account) %>
+                  <%= best_in_place transaction, :amount, display_with: :number_to_currency, :path => [transaction.account, transaction] %></td>
                 <td><%= best_in_place transaction, :category_id, :type => :select, :collection => Category::list_category_options, :path => [transaction.account, transaction] %></td>
                 <td><%= best_in_place transaction, :note, :path => [transaction.account, transaction] %></td>           
                 <td align="center">

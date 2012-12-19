@@ -11,8 +11,8 @@ class TransactionsController < ApplicationController
       page_num = Integer(params[:page])
     end
     
-    @transactions = @account.transactions.search(params[:search]).paginate(:page => page_num, :per_page => 15, :order => "date DESC")
-
+    #@transactions = @account.transactions.search(params[:search]).paginate(:page => page_num, :per_page => 15, :order => "date DESC")
+    @transactions = Transaction.transactions_for_account(params[:account_id]).search(params[:search]).paginate(:page => page_num, :per_page => 15, :order => "date DESC")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @transactions }

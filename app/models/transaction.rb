@@ -19,7 +19,8 @@
 
 class Transaction < ActiveRecord::Base
   attr_accessible :account_id, :amount, :check, :date, :description, :is_cleared, :note, :category_id, :transfer_account_id, :is_transfer
-  
+  attr_accessor :current_acct_id
+
   validates_presence_of :amount, :date
   
   belongs_to :account, class_name: 'Account'
@@ -35,5 +36,35 @@ class Transaction < ActiveRecord::Base
 	  end
   end
 
+  def self.transactions_for_account(acct)
+    where "account_id = ? OR transfer_account_id = ?", acct, acct
+  end
+
+  def amount
+    if (!current_acct_id.nil? && self.is_transfer == true)
+      if (self.account_id == current_acct_id)
+        read_attribute(:amount)
+      else
+        -read_attribute(:amount)
+      end
+    else
+      read_attribute(:amount)
+    end
+  end
+  
+  def amount=(amt)
+    if (!current_acct_id.nil? && self.is_transfer == true)
+      if (self.account_id == current_acct_id)
+        out = amt.to_f
+      else
+        out = (0-amt).to_f
+      end
+    else
+      out = amt.to_f
+      print("went through default")
+    end
+    write_attribute(:amount, out)
+    puts("Wrote:" + out.to_s)
+  end
 
 end
