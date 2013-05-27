@@ -10,7 +10,12 @@ class TransactionsController < ApplicationController
     else
       page_num = Integer(params[:page])
     end
-    
+    if (Integer(page_num)>1)
+      prior_transactions=@account.transactions.paginate(:page => 1, :per_page => 15*(page_num-1), :order => "date DESC")
+      @page_balance = @account.final_balance - prior_transactions.to_a.sum {|transaction| transaction.amount}
+    else
+      @page_balance = @account.final_balance
+    end
     @transactions = @account.transactions.search(params[:search]).paginate(:page => page_num, :per_page => 15, :order => "date DESC")
 
     respond_to do |format|
