@@ -25,11 +25,11 @@ class Transaction < ActiveRecord::Base
 
   def self.search(search)
 	  if search and search != ""
-	    where('UPPER(description) LIKE ?', '%'+search.upcase+'%')
+	    where('UPPER(description) LIKE ? OR UPPER("check") LIKE ? OR UPPER(note) LIKE ?', '%'+search.upcase+'%','%'+search.upcase+'%','%'+search.upcase+'%')
 	  else
 	    scoped
 	  end
   end
-
+ 
 
 end
