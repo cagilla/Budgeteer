@@ -5,6 +5,7 @@
 <%= link_to '[Back]', accounts_path %>
 
 <p>
+<p><%= getPrices() %>
 <b>Available Balance:</b><%= number_to_currency(@account.reconciled_balance) %>
 </p>
 <p><b>Balance:</b><%= number_to_currency(@account.final_balance) %></p>

@@ -1,4 +1,3 @@
-#---
 # Excerpted from "Programming Ruby 1.9",
 # published by The Pragmatic Bookshelf.
 # Copyrights apply to this code. It may not be used to create training material, 
@@ -14,6 +13,8 @@ begin
     md = /^\s*(Gold|Silver)\s*(\d*\.\d\d)\s*(\d*\.\d\d)\s*([+-].*[%])\s*(\d*\.\d\d)\s*(\d*\.\d\d)/.match(line)
     if md
       print "#{md[1]}: Bid (#{md[2]}), Ask (#{md[3]}), Low (#{md[5]}, High (#{md[6]}))\n"
+      mark = ("#{md[2]}".to_f+"#{md[3]}".to_f)/2
+      print mark
     else
       # Do Nothing
     end
