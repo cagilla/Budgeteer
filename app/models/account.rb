@@ -12,6 +12,7 @@
 #  user_name        :string(255)
 #  password         :string(255)
 #  note             :text
+#  account_type     :integer          default(0)
 #
 
 class Account < ActiveRecord::Base
@@ -27,6 +28,14 @@ class Account < ActiveRecord::Base
   	starting_balance + transactions.to_a.sum { |transaction| transaction.amount }
   end
  	
+  def value(prices)
+    transactions.to_a.sum { |transaction| transaction.quantity * transaction.ounces * prices[transaction.commodity_id] }
+  end
+
+  def total_cost()
+    transactions.to_a.sum { |transaction| transaction.amount * transaction.quantity * transaction.ounces + transaction.fee  }
+  end
+
   def available_balance
     starting_balance + transactions.to_a.sum { |transaction| transaction.date <= Date.today ? transaction.amount : 0 }
   end
@@ -35,6 +44,9 @@ class Account < ActiveRecord::Base
     starting_balance + transactions.to_a.sum { |transaction| transaction.is_cleared? ? transaction.amount : 0 }
   end
   
+  def isMetalType
+    account_type == 1
+  end
   # list of unreconciled transactions
   def unreconciled
     transactions.where("not is_cleared")

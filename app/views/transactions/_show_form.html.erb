@@ -1,0 +1,7 @@
+<p><b>Date:</b><%= best_in_place @transaction, :date, type: :date, :path => [@transaction.account, @transaction] %></p>
+<p><b>Check:</b><%= best_in_place @transaction, :check, :path => [@transaction.account, @transaction] %></p>
+<p><b>Description:</b><%= best_in_place @transaction, :description, :path => [@transaction.account, @transaction] %></p>
+<p><b>Amount:</b><%= best_in_place @transaction, :amount, display_with: :number_to_currency, :path => [@transaction.account, @transaction] %></p>
+<p><b>Category:</b><%= best_in_place @transaction, :category_id, :type => :select, :collection => Category::list_category_options, :path => [@transaction.account, @transaction] %></p>
+<p><b>Note:</b><%= best_in_place @transaction, :note, :path => [@transaction.account, @transaction] %></p>
+<p><b>Is cleared:</b><%= best_in_place @transaction, :is_cleared, type: :checkbox, :path => [@transaction.account, @transaction] %></p>

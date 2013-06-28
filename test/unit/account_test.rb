@@ -12,6 +12,7 @@
 #  user_name        :string(255)
 #  password         :string(255)
 #  note             :text
+#  account_type     :integer          default(0)
 #
 
 require 'test_helper'

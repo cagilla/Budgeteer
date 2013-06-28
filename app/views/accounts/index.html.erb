@@ -17,9 +17,13 @@
         <tr>
           <td><%= best_in_place account, :name %></td>
           <td><%= best_in_place account, :description %></td>
-          <td><%= number_to_currency(account.reconciled_balance) %></td>
-          <td><%= number_to_currency(account.final_balance) %></td>
-
+          <% if account.isMetalType %>
+            <td></td>
+            <td><%= number_to_currency(account.value(getPrices())) %></td>
+          <% else %>
+            <td><%= number_to_currency(account.reconciled_balance) %></td>
+            <td><%= number_to_currency(account.final_balance) %></td>
+          <% end %>          
           <td align="center">
               <%= link_to raw("<i class=\"icon-play \"> </i>"), account_transactions_path(account) %>
               <%= link_to raw("<i class=\"icon-pencil \"> </i>"), account, :action => :show %>

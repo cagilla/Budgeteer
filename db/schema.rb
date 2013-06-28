@@ -11,18 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121110185132) do
+ActiveRecord::Schema.define(:version => 20130623213950) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.decimal  "starting_balance"
     t.string   "web_address"
     t.string   "user_name"
     t.string   "password"
     t.text     "note"
+    t.integer  "account_type",     :default => 0
   end
 
   create_table "categories", :force => true do |t|
@@ -39,9 +40,14 @@ ActiveRecord::Schema.define(:version => 20121110185132) do
     t.text     "note"
     t.integer  "account_id"
     t.boolean  "is_cleared"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "category_id"
+    t.integer  "commodity_id"
+    t.integer  "quantity",     :default => 0
+    t.decimal  "ounces",       :default => 0.0
+    t.integer  "vendor_id"
+    t.decimal  "fee",          :default => 0.0
   end
 
   create_table "users", :force => true do |t|

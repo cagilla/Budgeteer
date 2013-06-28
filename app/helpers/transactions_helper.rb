@@ -11,7 +11,13 @@ module TransactionsHelper
 		    if md
 		      print "#{md[1]}: Bid (#{md[2]}), Ask (#{md[3]}), Low (#{md[5]}, High (#{md[6]}))\n"
 		      mark = ("#{md[2]}".to_f+"#{md[3]}".to_f)/2
-		      prices["#{md[1]}"] = mark
+		      key = case "#{md[1]}"
+		        when "Gold" then 2
+		        when "Silver" then 1
+		        when "Platinum" then 3
+		        when "Palladium" then 4
+		      end 
+		      prices[key] = mark
 
 		    else
 		      # Do Nothing
