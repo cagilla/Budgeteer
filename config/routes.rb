@@ -1,4 +1,7 @@
 Budgeteer::Application.routes.draw do
+  resources :vendors
+
+
   resources :categories
 
   resources :users

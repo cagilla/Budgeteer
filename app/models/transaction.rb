@@ -21,7 +21,7 @@
 #
 
 class Transaction < ActiveRecord::Base
-  attr_accessible :account_id, :amount, :check, :date, :description, :is_cleared, :note, :category_id, :quantity, :ounces, :price_per_ounce, :fee, :commodity_id
+  attr_accessible :account_id, :amount, :check, :date, :description, :is_cleared, :note, :category_id, :quantity, :ounces, :price_per_ounce, :fee, :commodity_id, :vendor_id
   
   validates_presence_of :amount, :date
   

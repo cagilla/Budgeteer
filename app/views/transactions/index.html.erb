@@ -1,6 +1,7 @@
 <h2><%= @account.name %></h2>
 <%= link_to '[New Transaction]', new_account_transaction_path(@account) %> 
-<%= link_away '[New Category]', new_category_path %>
+<%= link_away '[New Category]', new_category_path if !@account.isMetalType %>
+<%= link_away '[New Vendor]', new_vendor_path if @account.isMetalType %>
 <%= link_to '[Reconcile Account]', controller: "transactions", action: "reconcile", id: @account.id %> 
 <%= link_to '[Back]', accounts_path %>
 <br>
@@ -47,6 +48,7 @@
             <th>Quantity</th>
             <th>Ounces Each</th>
             <th>Description</th>
+            <th>Vendor</th>
             <th>Price/Oz</th>
             <th>Fee</th>
             <th>Cost</th>  
@@ -78,6 +80,7 @@
                     <td><%= best_in_place transaction, :quantity, :path => [transaction.account, transaction]  %></td>
                     <td><%= best_in_place transaction, :ounces, :path => [transaction.account, transaction]  %></td>
                     <td><%= best_in_place transaction, :description, :path => [transaction.account, transaction] %></td>
+                    <td><%= best_in_place transaction, :vendor_id, :type => :select, :collection => Vendor::list_vendors, :path => [transaction.account, transaction] %></td>
                     <td><%= best_in_place transaction, :amount, display_with: :number_to_currency, :path => [transaction.account, transaction] %></td>
                     <td><%= best_in_place transaction, :fee, display_with: :number_to_currency, :path => [transaction.account, transaction] %></td>
                     <% purchase = ((transaction.quantity * transaction.ounces * transaction.amount) + transaction.fee) %>
