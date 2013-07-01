@@ -1,4 +1,7 @@
 Budgeteer::Application.routes.draw do
+  resources :commodities
+
+
   resources :vendors
 
 

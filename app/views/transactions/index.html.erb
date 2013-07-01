@@ -1,6 +1,7 @@
 <h2><%= @account.name %></h2>
 <%= link_to '[New Transaction]', new_account_transaction_path(@account) %> 
 <%= link_away '[New Category]', new_category_path if !@account.isMetalType %>
+<%= link_away '[New Commodity]', new_commodity_path if @account.isMetalType %>
 <%= link_away '[New Vendor]', new_vendor_path if @account.isMetalType %>
 <%= link_to '[Reconcile Account]', controller: "transactions", action: "reconcile", id: @account.id %> 
 <%= link_to '[Back]', accounts_path %>
@@ -76,7 +77,7 @@
                     <td><%= best_in_place transaction, :note, :path => [transaction.account, transaction] %></td>
                 <% else %>    
                     <td><%= best_in_place transaction, :date, type: :date, :path => [transaction.account, transaction] %></td>
-                    <td><%= best_in_place transaction, :commodity_id, :path => [transaction.account, transaction]  %></td>
+                    <td><%= best_in_place transaction, :commodity_id, :type => :select, :collection => Commodity::list_commodities, :path => [transaction.account, transaction] %></td>
                     <td><%= best_in_place transaction, :quantity, :path => [transaction.account, transaction]  %></td>
                     <td><%= best_in_place transaction, :ounces, :path => [transaction.account, transaction]  %></td>
                     <td><%= best_in_place transaction, :description, :path => [transaction.account, transaction] %></td>
