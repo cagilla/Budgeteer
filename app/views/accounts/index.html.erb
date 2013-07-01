@@ -13,16 +13,19 @@
 
     
     <tbody>
+      <% final_balance_total = 0.0 %>
       <% @accounts.each do |account| %>
         <tr>
           <td><%= best_in_place account, :name %></td>
           <td><%= best_in_place account, :description %></td>
           <% if account.isMetalType %>
             <td></td>
-            <td><%= number_to_currency(account.value(getPrices())) %></td>
+            <td><%= number_to_currency( value = account.value(getPrices())) %></td>
+            <% final_balance_total += value %>
           <% else %>
             <td><%= number_to_currency(account.reconciled_balance) %></td>
-            <td><%= number_to_currency(account.final_balance) %></td>
+            <td><%= number_to_currency(bal = account.final_balance) %></td>
+            <% final_balance_total += bal %>
           <% end %>          
           <td align="center">
               <%= link_to raw("<i class=\"icon-play \"> </i>"), account_transactions_path(account) %>
@@ -35,7 +38,7 @@
         <td></td>
         <td align="right"><b>Total:</b></td>
         <td><%= number_to_currency(Account.reconciled_total) %></td>
-        <td><%= number_to_currency(Account.final_total) %></td>
+        <td><%= number_to_currency(final_balance_total) %></td>
       </tr>
     </tbody>
   </table>
