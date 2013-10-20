@@ -15,5 +15,7 @@ class Category < ActiveRecord::Base
   def self.list_category_options
   	Category.select("id, name").map { |x| [x.id, x.name] }
   end
-  
+  def self.default_scope
+    Category.order(:name)
+  end  
 end
