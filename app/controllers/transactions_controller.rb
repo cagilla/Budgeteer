@@ -24,6 +24,15 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def categorize
+    @transactions = Transaction.find_all_by_category_id(params[:id])
+
+    respond_to do |format|
+      format.html #{ render categorize.html.erb }
+      format.json { render json: @transactions }
+    end
+  end
+
   def reconcile
     @account = Account.find(params[:id])
     ##get the starting balance for the page

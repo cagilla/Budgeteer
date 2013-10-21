@@ -6,7 +6,7 @@
 <table class="table table-striped table-bordered ">
   <tr>
     <th>Name</th>
-    <th></th>
+    <th>Count</th>
     <th></th> 
   </tr>
 <% @catsum = 0 %>
@@ -15,7 +15,10 @@
     <td><%= best_in_place category, :name %></td>
 <% @cat = Transaction.count_category(category.id); @catsum += @cat %>
     <td><%= @cat %></td>
-    <td><%= link_to raw("<i class=\"icon-trash \"> </i>"), category, confirm: 'Are you sure?', method: :delete %></td>
+    <td>
+    	<%= link_to raw("<i class=\"icon-arrow-right \"> </i>"), controller: "transactions", action: "categorize", id: category%>
+    	<%= link_to raw("<i class=\"icon-trash \"> </i>"), category, confirm: 'Are you sure?', method: :delete %>
+    </td>
   </tr>
 <% end %>
 </table>

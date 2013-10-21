@@ -1,0 +1,48 @@
+<% @cat = @transactions.first.category.name %>
+<% if @cat=="" %>
+<%   @cat = "None" %>
+<% end %>
+<h2>Categorizing: <%= @cat %></h2>
+
+<%= link_to '[Back]', categories_path %>
+
+<div class='transactions'>
+<table class="table table-striped table-bordered ">
+    <thead>
+      <tr>
+        <th>Account name</th>
+        <th>Is cleared</th>
+        <th>Date</th>
+        <th>Check</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Note</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @transactions.each do |transaction| %>
+            
+            <tr>
+                <td><%= transaction.account.name %></td>
+                <td><%= best_in_place transaction, :is_cleared, type: :checkbox, :path => [transaction.account, transaction] %></td>
+                <td><%= best_in_place transaction, :date, type: :date, :path => [transaction.account, transaction] %></td>
+                <td><%= best_in_place transaction, :check, :path => [transaction.account, transaction] %></td>
+                <td><%= best_in_place transaction, :description, :path => [transaction.account, transaction] %></td>
+                <td><%= best_in_place transaction, :amount, display_with: :number_to_currency, :path => [transaction.account, transaction] %></td>
+                <td><%= best_in_place transaction, :category_id, :type => :select, :collection => Category::list_category_options, :path => [transaction.account, transaction] %></td>
+                <td><%= best_in_place transaction, :note, :path => [transaction.account, transaction] %></td>                
+                <td align="center">
+                  <%= link_to raw("<i class=\"icon-pencil \"> </i>"), [transaction.account, transaction] %>
+                  <%= link_to raw("<i class=\"icon-plus-sign \"> </i>"), :action => "clone", :id => transaction.id %>
+                  <%= link_to raw("<i class=\"icon-trash \"> </i>"), [transaction.account, transaction], confirm: 'Are you sure?', method: :delete %>
+                </td>
+            </tr>
+            
+        <% end %>
+    </tbody>
+</table>
+<br />
+
+

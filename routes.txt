@@ -1,3 +1,17 @@
+             commodities GET    /commodities(.:format)                                commodities#index
+                         POST   /commodities(.:format)                                commodities#create
+           new_commodity GET    /commodities/new(.:format)                            commodities#new
+          edit_commodity GET    /commodities/:id/edit(.:format)                       commodities#edit
+               commodity GET    /commodities/:id(.:format)                            commodities#show
+                         PUT    /commodities/:id(.:format)                            commodities#update
+                         DELETE /commodities/:id(.:format)                            commodities#destroy
+                 vendors GET    /vendors(.:format)                                    vendors#index
+                         POST   /vendors(.:format)                                    vendors#create
+              new_vendor GET    /vendors/new(.:format)                                vendors#new
+             edit_vendor GET    /vendors/:id/edit(.:format)                           vendors#edit
+                  vendor GET    /vendors/:id(.:format)                                vendors#show
+                         PUT    /vendors/:id(.:format)                                vendors#update
+                         DELETE /vendors/:id(.:format)                                vendors#destroy
               categories GET    /categories(.:format)                                 categories#index
                          POST   /categories(.:format)                                 categories#create
             new_category GET    /categories/new(.:format)                             categories#new
@@ -43,5 +57,6 @@ edit_account_transaction GET    /accounts/:account_id/transactions/:id/edit(.:fo
                  account GET    /accounts/:id(.:format)                               accounts#show
                          PUT    /accounts/:id(.:format)                               accounts#update
                          DELETE /accounts/:id(.:format)                               accounts#destroy
-                                /accounts/:id/transactions/reconcile(.:format)        transactions#reconcile
+                                /categories/:id/transactions(.:format)                transactions#categorize
+                                /accounts/:id/reconcile(.:format)                     transactions#reconcile
                     root        /                                                     static_pages#home
