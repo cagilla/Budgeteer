@@ -7,19 +7,19 @@
   <tr>
     <th>Name</th>
     <th></th>
-    
+    <th></th> 
   </tr>
-
+<% @catsum = 0 %>
 <% @categories.each do |category| %>
   <tr>
     <td><%= best_in_place category, :name %></td>
-
-
+<% @cat = Transaction.count_category(category.id); @catsum += @cat %>
+    <td><%= @cat %></td>
     <td><%= link_to raw("<i class=\"icon-trash \"> </i>"), category, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
-
+<p><b>Total:</b><%= @catsum %></p>
 <br />
 

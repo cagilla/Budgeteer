@@ -35,6 +35,10 @@ class Transaction < ActiveRecord::Base
 	    scoped
 	  end
   end
+
+  def self.count_category(cat)
+    Transaction.count(:conditions => ["category_id = ?", cat])
+  end
  
 
 end
