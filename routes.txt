@@ -58,5 +58,6 @@ edit_account_transaction GET    /accounts/:account_id/transactions/:id/edit(.:fo
                          PUT    /accounts/:id(.:format)                               accounts#update
                          DELETE /accounts/:id(.:format)                               accounts#destroy
                                 /categories/:id/transactions(.:format)                transactions#categorize
+                                /categories/:id/merge(.:format)                       transactions#merge_categories
                                 /accounts/:id/reconcile(.:format)                     transactions#reconcile
                     root        /                                                     static_pages#home

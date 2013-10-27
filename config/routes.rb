@@ -31,7 +31,9 @@ Budgeteer::Application.routes.draw do
   #   resources :transactions
   # end
   match 'categories/:id/transactions' => 'transactions#categorize'
+  match 'categories/:id/merge' => 'transactions#merge_categories'
   match 'accounts/:id/reconcile' => 'transactions#reconcile'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
